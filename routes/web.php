@@ -23,5 +23,6 @@ Route::get('/', function () {
 Route::resource('employee', EmployeeController::class)->middleware('auth');
 Route::resource('company', CompanyController::class)->middleware('auth');
 Route::post('/company/update/{id}', [CompanyController::class, 'update'])->middleware('auth');
+Route::post('/employee/update/{id}', [EmployeeController::class, 'update'])->middleware('auth');
 
 require __DIR__.'/auth.php';

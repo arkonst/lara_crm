@@ -119,6 +119,9 @@ class CompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validated = $request->validate([
+            'name' => 'required'
+        ]);
         $data = $request->all();
         $data['logo_path'] = $this->upload($request->allFiles());
         return Company::find($id)->update($data);

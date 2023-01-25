@@ -26,15 +26,15 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="name" class="col-sm-6 control-label">Employee Email</label>
+                            <label for="email" class="col-sm-6 control-label">Employee Email</label>
                             <div class="col-sm-12">
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter Employee Email" maxlength="50">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter Employee Email">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="name" class="col-sm-6 control-label">Employee Phone</label>
+                            <label for="phone" class="col-sm-6 control-label">Employee Phone</label>
                             <div class="col-sm-12">
-                                <input type="phone" class="form-control" id="phone" name="phone" placeholder="Enter Employee Phone" maxlength="50">
+                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter Employee Phone">
                             </div>
                         </div>
                         <div class="form-group">
@@ -170,17 +170,19 @@
             $('#CompanyForm').submit(function(e) {
                 e.preventDefault();
                 let formData = new FormData(this);
-                let route = '{{ url('/employee') }}';
+                let route = "{{ url('/employee') }}";
                 let method = 'POST';
                 if($('#id').val() != ''){
-                    route = '{{ url('/employee') }}/' + $('#id').val();
-                    method = 'PUT'
+                    route = "{{ url('/employee/update') }}/" + $('#id').val();
+                    method = 'POST'
                 }
                 $.ajax({
                     type: method,
                     url: route,
                     data: formData,
                     cache:false,
+                    contentType: false,
+                    processData: false,
                     success: (data) => {
                         $("#company-modal1").modal('hide');
                         $("#btn-save").html('Submit');
